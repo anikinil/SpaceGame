@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Game</title>
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="css/startscreen.css">
+    <link rel="stylesheet" type="text/css" href="css/endscreen.css">
+    <style> * { margin: 0; padding: 0; } html, body { overflow: hidden; height: 100%; width: 100%; } canvas { display: none; } #endscreen { display: none; } </style>
+  </head>
+
+  <body>
+    <!-- Startscreen -->
+    <div id="startscreen">
+      <h1>Game Title</h1>
+      <a href="#" class="btn" onclick="StartGame()">Start Game</a>
+    </div>
+
+    <!-- Endscreen -->
+    <div id="endscreen">
+      <h1>YOU DIED!</h1>
+      <h2 id="score"></h2>
+      <a href="#" class="btn_restart" onclick="StartGame(); resetAsteroids();">Restart</a>
+    </div>
+
+    <!-- Main Game -->
+    <canvas>Sorry!<br/>Your Browser doesn't support HTML 5 canvas.</canvas>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="js/utilities.js"></script>
+    <script type="text/javascript" src="js/objects.js"></script>
+    <script type="text/javascript" src="js/screening.js"></script>
+    <script type="text/javascript" src="js/canvas.js"></script>
+  </body>
+</html>
