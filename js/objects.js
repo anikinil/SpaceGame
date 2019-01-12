@@ -64,7 +64,6 @@ function Spaceship(x, y, img, width, height, speed) {
   this.speed = speed;
   this.immune = false;
   this.show = true;
-  this.canShoot = true;
   this.bullets = [];
 
   this.toggleShow = () => { this.show = !this.show; }
@@ -72,7 +71,6 @@ function Spaceship(x, y, img, width, height, speed) {
   this.shoot = () => {
     var b = new Bullet(this.x + this.width + 10, this.y + this.height - 5, 10, 5, 7);
     this.bullets.push(b);
-    this.canShoot = false;
   }
 
   this.update = () => {

@@ -55,6 +55,7 @@ let score = new ScoreManager();
 let deaths = new DeathManager();
 
 var start, blink;
+var lastS = Date.now();
 
 // Initialization
 function init() {
@@ -80,8 +81,6 @@ function init() {
   // Start Animation
   return animate();
 }
-
-var lastS = Date.now();
 
 // Animation Loop
 function animate() {
