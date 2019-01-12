@@ -111,7 +111,7 @@ function animate() {
     asteroids.forEach(asteroid => { asteroid.update(); });
     spaceship.update();
 
-    // --- Shoot ---
+    // Shoot
     if (Math.floor((Date.now() - lastS) / 1000) > 1 && spacePressed) {
       spaceship.shoot();
       lastS = Date.now();
