@@ -18,6 +18,7 @@ var rightPressed = false;
 var leftPressed = false;
 var upPressed = false;
 var downPressed = false;
+var spacePressed = false;
 
 // Event Listeners
 addEventListener('resize', () => {
@@ -32,6 +33,7 @@ addEventListener('keydown', (e) => {
   if (e.keyCode === 37) { leftPressed = true; }
   if (e.keyCode === 40) { upPressed = true; }
   if (e.keyCode === 38) { downPressed = true; }
+  if (e.keyCode === 32) { spacePressed = true; }
 });
 
 addEventListener('keyup', (e) => {
@@ -39,6 +41,7 @@ addEventListener('keyup', (e) => {
   if (e.keyCode === 37) { leftPressed = false; }
   if (e.keyCode === 40) { upPressed = false; }
   if (e.keyCode === 38) { downPressed = false; }
+  if (e.keyCode === 32) { spacePressed = false; }
 });
 
 // Implementation
@@ -52,6 +55,7 @@ let score = new ScoreManager();
 let deaths = new DeathManager();
 
 var start, blink;
+var lastS = Date.now();
 
 // Initialization
 function init() {
@@ -88,6 +92,7 @@ function animate() {
     // Draw stuff on screen
     bg.draw();
     asteroids.forEach(asteroid => { asteroid.draw(); });
+    spaceship.bullets.forEach(b => { b.draw(); });
     spaceship.draw();
     score.draw(30, 60);
     deaths.draw(canvas.width - (c.measureText('Deaths: 0').width + 30), 60);
@@ -105,6 +110,30 @@ function animate() {
     bg.update();
     asteroids.forEach(asteroid => { asteroid.update(); });
     spaceship.update();
+
+    // --- Shoot ---
+    if (Math.floor((Date.now() - lastS) / 1000) > 1 && spacePressed) {
+      spaceship.shoot();
+      lastS = Date.now();
+    }
+
+    // Bullet collision
+    asteroids.forEach(a => {
+      spaceship.bullets.forEach(b => {
+        if (distance(b.x + b.width, b.y + b.height, a.x + a.radius, a.y + a.radius) < b.width + a.radius) {
+          var iB = spaceship.bullets.indexOf(b);
+          spaceship.bullets.splice(iB, 1);
+
+          a.x = canvas.width + a.radius * 2;
+          a.y = randomIntFromRange(0, canvas.height);
+          a.color = randomColor(colors);
+        }
+
+        if (b.x >= canvas.width) {
+          spaceship.bullets.splice(iB, 1);
+        }
+      });
+    });
 
     // Immunity
     if (Math.floor((Date.now() - start) / 1000) > 1) {
@@ -173,4 +202,9 @@ function resetAsteroids() {
     asteroids.push(new Asteroid(canvas.width + radius * 2, y, radius, color, getSpeed(radius)));
   }
   return asteroids;
+}
+
+var t = 0
+function incTimer() {
+  t += 1;
 }
