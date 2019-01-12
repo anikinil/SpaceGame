@@ -81,6 +81,8 @@ function init() {
   return animate();
 }
 
+var lastS = Date.now();
+
 // Animation Loop
 function animate() {
   // Update Screen
@@ -111,9 +113,9 @@ function animate() {
     spaceship.update();
 
     // --- Shoot ---
-    if (spacePressed && !spaceship.immune && spaceship.canShoot) {
+    if (Math.floor((Date.now() - lastS) / 1000) > 1 && spacePressed) {
       spaceship.shoot();
-      spaceship.canShoot = false;
+      lastS = Date.now();
     }
 
     // Bullet collision
@@ -203,6 +205,7 @@ function resetAsteroids() {
   return asteroids;
 }
 
-function canShoot() {
-  spaceship.canShoot = !spaceship.canShoot;
+var t = 0
+function incTimer() {
+  t += 1;
 }
