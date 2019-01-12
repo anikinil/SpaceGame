@@ -64,21 +64,51 @@ function Spaceship(x, y, img, width, height, speed) {
   this.speed = speed;
   this.immune = false;
   this.show = true;
+  this.canShoot = true;
+  this.bullets = [];
 
   this.toggleShow = () => { this.show = !this.show; }
 
+  this.shoot = () => {
+    var b = new Bullet(this.x + this.width + 10, this.y + this.height - 5, 10, 5, 7);
+    this.bullets.push(b);
+    this.canShoot = false;
+  }
+
   this.update = () => {
-    if (this.show) { this.draw(); }
+    this.bullets.forEach(b => { b.update(); })
     if (upPressed) { this.y += this.speed; bg.y -= this.speed * 0.5; }
     if (rightPressed) { this.x += this.speed; bg.x -= this.speed * 0.25; }
     if (downPressed) { this.y -= this.speed; bg.y += this.speed * 0.5; }
     if (leftPressed) { this.x -= this.speed; bg.x -= this.speed * 0.25;}
     if (this.x <= 0) { this.x = 0 } else if (this.x + this.width >= canvas.width) { this.x = canvas.width - this.width; }
     if (this.y <= 0) { this.y = 0 } else if (this.y + this.height >= canvas.height) { this.y = canvas.height - this.height; }
+    if (this.show) { this.draw(); }
   }
 
   this.draw = () => {
     c.drawImage(this.sprite, this.x, this.y);
+  }
+}
+
+function Bullet(x, y, w, h, speed) {
+  this.x = x;
+  this.y = y;
+  this.width = w;
+  this.height = h;
+  this.speed = speed;
+
+  this.update = () => {
+    this.x += this.speed;
+    this.draw();
+  }
+
+  this.draw = () => {
+    c.beginPath();
+    c.rect(this.x, this.y, this.width, this.height);
+    c.fillStyle = '#000';
+    c.fill();
+    c.closePath();
   }
 }
 
