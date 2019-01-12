@@ -7,3 +7,4 @@ In this version included:
 >- Endscreen
 >- Restart option
 >- Blink effect on collision
+>- Shooting
