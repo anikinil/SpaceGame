@@ -8,3 +8,4 @@ In this version included:
 >- Restart option
 >- Blink effect on collision
 >- Shooting
+>- Scrolling Background (x-y)
