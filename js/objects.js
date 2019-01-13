@@ -15,6 +15,10 @@ function Background(x, y, width, height, img, speed) {
     // if (rightPressed) { this.x -= spaceship.speed * 0.25; }
     // if (downPressed && !(spaceship.y + spaceship.height >= canvas.height)) { this.y += spaceship.speed * 0.5; }
     // if (leftPressed) { this.x -= spaceship.speed * 0.25; }
+    if (upPressed) { this.y -= spaceship.speed * 0.5; }
+    if (rightPressed) { this.x -= spaceship.speed * 0.25; }
+    if (downPressed) { this.y += spaceship.speed * 0.5; }
+    if (leftPressed) { this.x -= spaceship.speed * 0.25; }
 
     this.draw();
   }
@@ -77,10 +81,10 @@ function Spaceship(x, y, img, width, height, speed) {
 
   this.update = () => {
     this.bullets.forEach(b => { b.update(); })
-    if (upPressed) { this.y += this.speed; bg.y -= this.speed * 0.5; }
-    if (rightPressed) { this.x += this.speed; bg.x -= this.speed * 0.25; }
-    if (downPressed) { this.y -= this.speed; bg.y += this.speed * 0.5; }
-    if (leftPressed) { this.x -= this.speed; bg.x -= this.speed * 0.25; }
+    if (upPressed) { this.y += this.speed; }
+    if (rightPressed) { this.x += this.speed; }
+    if (downPressed) { this.y -= this.speed; }
+    if (leftPressed) { this.x -= this.speed; }
     if (this.x <= 0) { this.x = 0 } else if (this.x + this.width >= canvas.width) { this.x = canvas.width - this.width; }
     if (this.y <= 0) { this.y = 0 } else if (this.y + this.height >= canvas.height) { this.y = canvas.height - this.height; }
     if (this.show) { this.draw(); }
