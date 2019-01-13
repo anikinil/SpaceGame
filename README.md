@@ -12,6 +12,6 @@ In this version included:
 
 --------------------------------------------------
 
-Functions:
+##Functions:
 >- Press esc to pause
 >- Press space to shoot
