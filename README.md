@@ -11,6 +11,7 @@ In this version included:
 >- Scrolling Background (x-y)
 
 --
+
 Functions:
 >- Press esc to pause
 >- Press space to shoot
