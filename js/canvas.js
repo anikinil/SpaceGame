@@ -60,7 +60,8 @@ var lastS = Date.now();
 // Initialization
 function init() {
   // Draw Background
-  bg = new Background(0, 0, canvas.width, canvas.height, '#F5F5F5', 2);
+  bg = new Background(0, -canvas.height / 3, canvas.width, canvas.height * 1.5, 'Sprites/background1.jpg', 2);
+  bg2 = new Background(canvas.width, -canvas.height / 3, canvas.width + 5, canvas.height * 1.5, 'Sprites/background1.jpg', 2);
 
   // Reset Vars
   score.resetScore();
@@ -91,6 +92,7 @@ function animate() {
   if (pause) {
     // Draw stuff on screen
     bg.draw();
+    bg2.draw();
     asteroids.forEach(asteroid => { asteroid.draw(); });
     spaceship.bullets.forEach(b => { b.draw(); });
     spaceship.draw();
@@ -108,6 +110,7 @@ function animate() {
   } else {
     // Update stuff
     bg.update();
+    bg2.update();
     asteroids.forEach(asteroid => { asteroid.update(); });
     spaceship.update();
 
