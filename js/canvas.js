@@ -127,6 +127,8 @@ function animate() {
           var iB = spaceship.bullets.indexOf(b);
           spaceship.bullets.splice(iB, 1);
 
+          score.increment(2);
+
           a.x = canvas.width + a.radius * 2;
           a.y = randomIntFromRange(0, canvas.height);
           a.color = randomColor(colors);
@@ -205,9 +207,4 @@ function resetAsteroids() {
     asteroids.push(new Asteroid(canvas.width + radius * 2, y, radius, color, getSpeed(radius)));
   }
   return asteroids;
-}
-
-var t = 0
-function incTimer() {
-  t += 1;
 }
