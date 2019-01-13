@@ -87,7 +87,7 @@ function Spaceship(x, y, img, width, height, speed) {
   }
 
   this.draw = () => {
-    c.drawImage(this.sprite, this.x, this.y, this.width, this.height);
+    c.drawImage(this.sprite, this.x, this.y);
   }
 }
 

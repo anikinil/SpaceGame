@@ -46,7 +46,7 @@ addEventListener('keyup', (e) => {
 
 // Implementation
 let bg, spaceship;
-let shipWidth = shipHeight = 100;
+let shipWidth = shipHeight = 50;
 let asteroids = [];
 
 var speed;
