@@ -9,6 +9,7 @@ In this version included:
 >- Blink effect on collision
 >- Shooting
 >- Scrolling Background (x-y)
+
 --
 Functions:
 >- Press esc to pause
